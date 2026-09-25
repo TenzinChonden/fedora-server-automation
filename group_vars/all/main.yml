@@ -6,4 +6,4 @@ shared_dir: /srv/shared
 
 db_name: appdb
 db_user: appuser
-db_password: "{{ vault_db_password }}"
+db_password: "secure_local_pasword"
