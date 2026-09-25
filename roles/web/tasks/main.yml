@@ -1,0 +1,51 @@
+- name: Install LAMP stack packages (Apache, MariaDB, PHP, and Python MySQL connector)
+  ansible.builtin.dnf:
+    name: [httpd, mariadb-server, php, php-mysqlnd, python3-PyMySQL]
+    state: present
+
+- name: Ensure MariaDB and Apache are running and enabled
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    enabled: true
+    state: started
+  loop: [mariadb, httpd]
+
+- name: Create database
+  community.mysql.mysql_db:
+    name: "{{ db_name }}"
+    state: present
+    login_unix_socket: /var/lib/mysql/mysql.sock
+
+- name: Create database user and grant privileges
+  community.mysql.mysql_user:
+    name: "{{ db_user }}"
+    password: "{{ db_password }}"
+    priv: "{{ db_name }}.*:ALL"
+    state: present
+    login_unix_socket: /var/lib/mysql/mysql.sock
+
+- name: Deploy a dynamic PHP database health-check index page
+  ansible.builtin.copy:
+    dest: /var/www/html/index.php
+    content: |
+      <?php
+      $mysqli = new mysqli("localhost", "{{ db_user }}", "{{ db_password }}", "{{ db_name }}");
+      if ($mysqli->connect_errno) {
+          echo "<h1>Database Connection Failed: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error . "</h1>";
+      } else {
+          echo "<h1>LAMP Stack Operational!</h1>";
+          echo "<p>Successfully connected to MySQL database: <strong>{{ db_name }}</strong></p>";
+      }
+      ?>
+    owner: apache
+    group: apache
+    mode: "0644"
+  notify: Restart httpd
+
+- name: Allow HTTP and HTTPS through firewalld
+  ansible.posix.firewalld:
+    service: "{{ item }}"
+    permanent: true
+    immediate: true
+    state: enabled
+  loop: [http, https]

@@ -1,0 +1,63 @@
+- name: Install base packages
+  ansible.builtin.dnf:
+    name: [vim-enhanced, git, firewalld, acl, policycoreutils-python-utils, python3-libselinux]
+    state: present
+
+- name: Create groups
+  ansible.builtin.group:
+    name: "{{ item }}"
+  loop: "{{ server_groups }}"
+
+- name: Create users
+  ansible.builtin.user:
+    name: "{{ item.name }}"
+    groups: "{{ item.groups }}"
+    append: true
+    shell: /bin/bash
+  loop: "{{ server_users }}"
+
+- name: Shared directory (setgid, group-writable)
+  ansible.builtin.file:
+    path: "{{ shared_dir }}"
+    state: directory
+    owner: root
+    group: developers
+    mode: "2770"
+
+- name: ACL so webadmins can read the shared directory (current + future files)
+  ansible.posix.acl:
+    path: "{{ shared_dir }}"
+    entity: webadmins
+    etype: group
+    permissions: rx
+    default: "{{ item }}"
+    state: present
+  loop: [true, false]
+
+- name: Harden sshd (drop-in wins over vendor defaults)
+  ansible.builtin.copy:
+    dest: /etc/ssh/sshd_config.d/00-hardening.conf
+    content: |
+      PermitRootLogin no
+      PasswordAuthentication no
+      X11Forwarding no
+    mode: "0600"
+  notify: Restart sshd
+
+- name: Enable firewalld
+  ansible.builtin.systemd:
+    name: firewalld
+    enabled: true
+    state: started
+
+- name: Allow SSH through the firewall
+  ansible.posix.firewalld:
+    service: ssh
+    permanent: true
+    immediate: true
+    state: enabled
+
+- name: Keep SELinux enforcing
+  ansible.posix.selinux:
+    policy: targeted
+    state: enforcing

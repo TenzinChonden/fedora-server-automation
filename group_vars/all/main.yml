@@ -1,0 +1,9 @@
+server_groups: [developers, webadmins]
+server_users:
+  - { name: alice, groups: [developers] }
+  - { name: tenzin,   groups: [developers, webadmins] }
+shared_dir: /srv/shared
+
+db_name: appdb
+db_user: appuser
+db_password: "{{ vault_db_password }}"
