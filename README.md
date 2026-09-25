@@ -63,8 +63,8 @@ make clean
 
 ---
 
-## 🔮 Recommended Next Steps & Potential Upgrades
-To take this infrastructure project to the next enterprise-grade level, consider implementing the following enhancements:
+## 🔮 Next Steps & Potential Upgrades
+To take this infrastructure project to the next level, consider implementing the following enhancements:
 1. **Automated Testing with Molecule & Testinfra:** Add unit and integration tests to validate Ansible roles before deploying them to live instances.
 2. **CI/CD Pipeline Integration:** Wrap the `Makefile` commands inside a GitHub Actions workflow to automatically lint playbooks (`ansible-lint`) and test provisioning in a CI runner.
 3. **TLS/Let's Encrypt Automation:** Extend the web role to automatically issue and configure SSL certificates using Certbot for secure HTTPS traffic.
