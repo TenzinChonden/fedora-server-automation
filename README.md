@@ -6,7 +6,6 @@ An automated, modular Infrastructure-as-Code (IaC) deployment pipeline designed 
 
 ## 🎯 Use Cases
 * **Reproducible Development Labs:** Instantly spin up disposable, fully configured virtual servers for testing applications or system configuration scripts without risking host stability.
-* **Infrastructure Automation Portfolios:** Demonstrates modern DevOps principles—such as idempotency, secret management, role-based configuration, and push-button provisioning—using native Linux virtualization tools.
 * **Staging Server Provisioning:** Provides a blueprint for rapidly bootstrapping secure web application nodes with pre-configured firewall rules, SELinux policies, and database instances.
 
 ---
