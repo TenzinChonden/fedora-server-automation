@@ -6,7 +6,7 @@ Designed for frictionless execution, this repository serves as both a local deve
 
 ---
 
-## 🎯 Use Cases 
+##  Use Cases 
 
 * **Zero-Risk Experimental Sandbox:** Test new database configurations, system hardening rules, or web frameworks locally without risking host stability. If something breaks, a single command wipes and rebuilds the environment in seconds.
 * **Local "Production" Dry-Run:** Validate application deployments, firewall rules, and SELinux policies against a real Linux server environment before deploying to cloud infrastructure.
@@ -23,7 +23,7 @@ Designed for frictionless execution, this repository serves as both a local deve
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 ```text
 .
 ├── ansible.cfg                 # Global Ansible configurations
@@ -43,7 +43,7 @@ Designed for frictionless execution, this repository serves as both a local deve
 
 ---
 
-## 🚀 Quick Start / How to Use
+##  Quick Start / How to Use
 
 ### Prerequisites
 Ensure your local host machine has the required virtualization and automation packages installed:
@@ -67,7 +67,7 @@ make clean
 
 ---
 
-## 🧪 Practical Example: Testing a Database Configuration Sandbox
+##  Practical Example: Testing a Database Configuration Sandbox
 
 One of the primary benefits of this pipeline is the ability to test infrastructure changes safely as code. For example, if you want to test a custom **MariaDB performance tuning configuration** (such as adjusting buffer pools):
 
@@ -98,7 +98,7 @@ One of the primary benefits of this pipeline is the ability to test infrastructu
 
 ---
 
-## 🔮 Next Steps & Potential Upgrades
+##  Next Steps & Potential Upgrades
 * **Automated Testing with Molecule & Testinfra:** Add unit and integration tests to validate Ansible roles before deploying them to live instances.
 * **CI/CD Pipeline Integration:** Wrap the `Makefile` commands inside a GitHub Actions workflow to automatically lint playbooks (`ansible-lint`) and test provisioning in a CI runner.
 * **TLS/Let's Encrypt Automation:** Extend the web role to automatically issue and configure SSL certificates using Certbot for secure HTTPS traffic.
