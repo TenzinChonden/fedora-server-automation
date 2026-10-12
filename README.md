@@ -53,7 +53,7 @@ Ensure your local host machine has the required virtualization and automation pa
 Clone the repository and run the orchestrator. Because the project uses straightforward plain-text variables, it is 100% plug-and-play with zero decryption setup required:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/fedora-server-automation.git
+git clone https://github.com/TenzinChonden/fedora-server-automation.git
 cd fedora-server-automation
 make all
 ```
