@@ -1,8 +1,6 @@
 # Fedora Server Automation (IaC Pipeline)
 
-An automated, modular Infrastructure-as-Code (IaC) deployment pipeline designed to spin up, harden, and configure a production-ready LAMP stack server on Fedora Linux using **KVM/libvirt**, **Cloud-init**, **Ansible**, and a **Makefile** orchestration workflow. 
-
-Designed for frictionless execution, this repository serves as both a local development sandbox and a clean technical portfolio asset.
+An automated, modular Infrastructure-as-Code (IaC) deployment pipeline designed to spin up, harden, and configure a LAMP stack server on Fedora Linux using **KVM/libvirt**, **Cloud-init**, **Ansible**, and a **Makefile** orchestration workflow.
 
 ---
 
