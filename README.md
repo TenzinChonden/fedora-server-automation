@@ -11,7 +11,7 @@ An automated, modular Infrastructure-as-Code (IaC) deployment pipeline designed 
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 * **Virtualization:** KVM / QEMU via `libvirt`
 * **Cloud Initialization:** `cloud-init` (ISO-based configuration injection)
 * **Configuration Management:** Ansible (Roles, Dynamic Inventory, Plain-text configuration variables)
